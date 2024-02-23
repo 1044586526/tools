@@ -1,4 +1,4 @@
-package cn.quant_cloud.standard.utils;
+package cn.quant_cloud.upload.utils;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
  * @date 2024/1/23 16:31
  * @version 1.0
  */
-public class FileResumeUploadUtils {
+public class UploadUtils {
 
     /**
      * 获取文件文件指纹
