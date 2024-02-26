@@ -2,7 +2,6 @@ package cn.quant_cloud.upload.controller;
 
 import cn.quant_cloud.upload.storage.FileServer;
 import cn.quant_cloud.upload.entity.ResponseResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +17,7 @@ import java.io.IOException;
 @RequestMapping("/file")
 public class FileController {
 
-    private  FileServer fileServer;
+    private final FileServer fileServer;
 
     public FileController(FileServer fileServer) {
         this.fileServer = fileServer;
