@@ -1,4 +1,4 @@
-package cn.ljh.upload.utils;
+package cn.qy.upload.utils;
 
 import java.io.*;
 import java.nio.file.Files;

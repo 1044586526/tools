@@ -1,4 +1,4 @@
-package cn.ljh.upload.entity;
+package cn.qy.upload.entity;
 
 /**
  * @author ljh

@@ -1,8 +1,8 @@
-package cn.ljh.upload.storage.disk;
+package cn.qy.upload.storage.disk;
 
 
-import cn.ljh.upload.configuration.FileAutoConfiguration;
-import cn.ljh.upload.storage.IFileStorage;
+import cn.qy.upload.configuration.FileAutoConfiguration;
+import cn.qy.upload.storage.IFileStorage;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

@@ -1,4 +1,4 @@
-package cn.ljh.upload.exception;
+package cn.qy.upload.exception;
 
 
 /**

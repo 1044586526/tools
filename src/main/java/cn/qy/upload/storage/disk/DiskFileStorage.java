@@ -1,6 +1,6 @@
-package cn.ljh.upload.storage.disk;
+package cn.qy.upload.storage.disk;
 
-import cn.ljh.upload.storage.IFileStorage;
+import cn.qy.upload.storage.IFileStorage;
 
 import java.time.LocalDateTime;
 

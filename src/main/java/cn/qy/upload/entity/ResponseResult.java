@@ -1,7 +1,7 @@
-package cn.ljh.upload.entity;
+package cn.qy.upload.entity;
 
 
-import cn.ljh.upload.entity.enums.AppHttpCodeEnum;
+import cn.qy.upload.entity.enums.AppHttpCodeEnum;
 
 import java.io.Serializable;
 

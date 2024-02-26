@@ -1,4 +1,4 @@
-package cn.ljh.upload.entity.constant;
+package cn.qy.upload.entity.constant;
 
 /**
  * @description: 常量

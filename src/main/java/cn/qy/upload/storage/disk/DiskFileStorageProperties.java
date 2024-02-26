@@ -1,6 +1,6 @@
-package cn.ljh.upload.storage.disk;
+package cn.qy.upload.storage.disk;
 
-import cn.ljh.upload.entity.constant.CommonConstant;
+import cn.qy.upload.entity.constant.CommonConstant;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -1,7 +1,7 @@
-package cn.ljh.upload.controller;
+package cn.qy.upload.controller;
 
-import cn.ljh.upload.storage.FileServer;
-import cn.ljh.upload.entity.ResponseResult;
+import cn.qy.upload.storage.FileServer;
+import cn.qy.upload.entity.ResponseResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 

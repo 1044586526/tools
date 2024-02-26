@@ -1,11 +1,11 @@
-package cn.ljh.upload.storage;
+package cn.qy.upload.storage;
 
-import cn.ljh.upload.entity.FileUploadResponse;
-import cn.ljh.upload.entity.ResponseResult;
-import cn.ljh.upload.entity.constant.CommonConstant;
-import cn.ljh.upload.exception.UploadException;
-import cn.ljh.upload.storage.disk.DiskFileStorageProperties;
-import cn.ljh.upload.utils.UploadUtils;
+import cn.qy.upload.entity.FileUploadResponse;
+import cn.qy.upload.entity.ResponseResult;
+import cn.qy.upload.entity.constant.CommonConstant;
+import cn.qy.upload.exception.UploadException;
+import cn.qy.upload.storage.disk.DiskFileStorageProperties;
+import cn.qy.upload.utils.UploadUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;

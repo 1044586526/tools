@@ -1,9 +1,9 @@
-package cn.ljh.upload.configuration;
+package cn.qy.upload.configuration;
 
-import cn.ljh.upload.storage.FileServer;
-import cn.ljh.upload.controller.FileController;
-import cn.ljh.upload.storage.IFileStorage;
-import cn.ljh.upload.storage.disk.DiskFileStorageProperties;
+import cn.qy.upload.storage.FileServer;
+import cn.qy.upload.controller.FileController;
+import cn.qy.upload.storage.IFileStorage;
+import cn.qy.upload.storage.disk.DiskFileStorageProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;

@@ -1,4 +1,4 @@
-package cn.ljh.upload.entity.enums;
+package cn.qy.upload.entity.enums;
 
 public enum AppHttpCodeEnum {
 
