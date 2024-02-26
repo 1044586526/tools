@@ -8,8 +8,8 @@
         <version>2.3.12.RELEASE</version>
     </parent>
 
-    <artifactId>szly-upload-utils</artifactId>
-
+    <artifactId>qy-upload-utils</artifactId>
+    <version>1.0.0</version>
 
     <properties>
         <java.version>8</java.version>
@@ -37,7 +37,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--    lombok依赖-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
