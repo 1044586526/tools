@@ -28,7 +28,9 @@ new Vue({
             try {
                 // 计算文件的SHA256值
                 this.sha256 = await this.calculateFileSHA256(this.file);
+                this.fileName = this.file.name;
                 console.log('SHA256:', this.sha256);
+                console.log('fileName:', this.fileName);
 
                 // 在这里发起上传预处理请求
                 await this.preprocessFileUpload();
@@ -86,19 +88,20 @@ new Vue({
          */
         preprocessFileUpload() {
             try {
-                axios.get('http://localhost:7878/api/file/preprocess', {
+                axios.get('http://localhost:8090/file/check', {
                     params: {
                         sha256: this.sha256,
                         totalBytes: this.totalBytes,
+                        fileName: this.fileName
                     },
                 }).then(async (response) => {
-                    console.log(response);
+                    console.log(response.data);
 
                     // 处理预处理的响应
-                    if (response.data.code === 20000) {
+                    if (response.data.code === 200) {
                         // 提取相关参数
-                        this.uploadedBytes = response.data.data.uploadedBytes;
-                        this.uploadFileSHA256 = response.data.data.currentSha256;
+                        this.uploadedBytes = response.data.data.totalSize;
+                        this.uploadFileSHA256 = response.data.data.sha256;
 
                         // 在这里可以根据返回的参数进行相应的处理
                         console.log('Uploaded Bytes:', this.uploadedBytes);
@@ -161,17 +164,19 @@ new Vue({
         uploadFile() {
             const reader = new FileReader();
             reader.onload = (e) => {
+                console.log("this.startByte"+this.startByte)
                 const fileData = e.target.result;
                 const blob = new Blob([fileData], {type: this.file.type});
                 const formData = new FormData();
-                formData.append('file', blob);
                 formData.append('sha256', this.sha256);
-                formData.append('startByte', this.startByte);
-                formData.append('totalBytes', this.totalBytes);
+                formData.append('startSize', this.startByte);
+                formData.append('totalSize', this.totalBytes);
+                formData.append('fileName', this.fileName);
+                formData.append('file', blob);
 
                 axios({
                     method: 'post',
-                    url: 'http://localhost:7878/api/file/upload',
+                    url: 'http://localhost:8090/file/upload',
                     data: formData,
                     headers: {
                         'Content-Type': 'multipart/form-data'

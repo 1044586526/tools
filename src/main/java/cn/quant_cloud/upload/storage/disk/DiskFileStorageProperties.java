@@ -1,7 +1,11 @@
 package cn.quant_cloud.upload.storage.disk;
 
+import cn.quant_cloud.upload.entity.constant.CommonConstant;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import javax.annotation.PostConstruct;
+import java.util.Objects;
 
 /**
  * @author: ljh
@@ -19,8 +23,10 @@ public class DiskFileStorageProperties {
      * 文件存储目录
      */
     private String uploadDir;
-    /**
-     * 指定存储目录请求头
-     */
-    private String uploadDirHeader = "quant-cloud-dir";
+
+    @PostConstruct
+    public void init() {
+        this.tempDir = Objects.isNull(tempDir) ? CommonConstant.TEMP : tempDir;
+        this.uploadDir = Objects.isNull(uploadDir) ?   CommonConstant.FORMAL : uploadDir;
+    }
 }

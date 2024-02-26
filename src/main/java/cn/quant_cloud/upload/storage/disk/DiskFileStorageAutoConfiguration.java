@@ -1,5 +1,6 @@
 package cn.quant_cloud.upload.storage.disk;
 
+
 import cn.quant_cloud.upload.configuration.FileAutoConfiguration;
 import cn.quant_cloud.upload.storage.IFileStorage;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -14,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
  * @version: 1.0
  */
 @Configuration
-@ConditionalOnMissingBean(IFileStorage.class)
 @AutoConfigureBefore(FileAutoConfiguration.class)
 @EnableConfigurationProperties(DiskFileStorageProperties.class)
 public class DiskFileStorageAutoConfiguration {

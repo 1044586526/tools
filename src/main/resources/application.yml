@@ -1,9 +1,0 @@
-server:
-  port: 8089
-
-
-upload:
-  # 临时文件目录
-  path-temp:  D:\company\workspae\liangyun\ly-tools\test_file\temp
-  # 正式文件目录
-  path-formal: D:\company\workspae\liangyun\ly-tools\test_file\formal

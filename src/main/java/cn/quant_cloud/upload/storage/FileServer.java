@@ -2,11 +2,16 @@ package cn.quant_cloud.upload.storage;
 
 import cn.quant_cloud.upload.entity.FileUploadResponse;
 import cn.quant_cloud.upload.entity.ResponseResult;
+import cn.quant_cloud.upload.entity.constant.CommonConstant;
 import cn.quant_cloud.upload.exception.UploadException;
 import cn.quant_cloud.upload.storage.disk.DiskFileStorageProperties;
 import cn.quant_cloud.upload.utils.UploadUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,6 +19,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -63,21 +69,21 @@ public class FileServer {
     }
 
 
-    public ResponseResult upload(String sha256,String fileName,Long totalSize,Long startSize,byte[] bytes){
+    public ResponseResult upload(String sha256, String fileName, Long totalSize, Long startSize, MultipartFile file){
         try {
             // 是否首次上传
-            Path tempPath = Paths.get(diskFileStorageProperties.getTempDir(), sha256+".tmp");
+            Path tempPath = Paths.get(diskFileStorageProperties.getTempDir(), sha256 + CommonConstant.TEMP_SUFFIX);
             if (!Files.exists(tempPath)){
                 Files.createFile(tempPath);
             }
             // 写入文件
-            UploadUtils.readFileThenWrite(tempPath, startSize, bytes);
+            UploadUtils.readFileThenWrite(tempPath, startSize, file.getBytes());
 
             // 文件完整性校验
             String tmpSha256 = UploadUtils.getFileSha256(tempPath);
             if (tmpSha256.equals(sha256) && Files.size(tempPath) == totalSize){
                 // 移动临时文件到正式目录
-                Path formalPath = Paths.get(diskFileStorageProperties.getUploadDir(),fileName);
+                Path formalPath = Paths.get(diskFileStorageProperties.getUploadDir(),sha256 + CommonConstant.SPLIT + fileName);
                 Files.move(tempPath, formalPath, StandardCopyOption.ATOMIC_MOVE);
                 //记录指纹库
                 storage.save(fileName, LocalDateTime.now(),sha256,totalSize);
@@ -97,8 +103,8 @@ public class FileServer {
      */
     private List<Path> getPaths(String sha256,String fileName,Long totalSize){
         return Arrays.asList(
-                Paths.get(diskFileStorageProperties.getUploadDir(), sha256 + "-" + fileName),
-                Paths.get(diskFileStorageProperties.getTempDir(), sha256+".tmp")
+                Paths.get(diskFileStorageProperties.getUploadDir(), sha256 + CommonConstant.SPLIT + fileName),
+                Paths.get(diskFileStorageProperties.getTempDir(), sha256 + CommonConstant.TEMP_SUFFIX)
         );
     }
 

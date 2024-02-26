@@ -2,9 +2,12 @@ package cn.quant_cloud.upload.controller;
 
 import cn.quant_cloud.upload.storage.FileServer;
 import cn.quant_cloud.upload.entity.ResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
+import java.io.IOException;
 
 /**
  * @author ljh
@@ -29,7 +32,7 @@ public class FileController {
      * @param totalSize 文件大小
      * @return 预检查结果
      */
-    @GetMapping("/preCheckFile")
+    @GetMapping("/check")
     public ResponseResult preCheckFile(@RequestParam("sha256") @NotBlank(message = "sha256不能为空") String sha256,
                                        @RequestParam("fileName")@NotBlank(message = "文件名不能为空") String fileName,
                                        @RequestParam("totalBytes") Long totalSize){
@@ -43,16 +46,16 @@ public class FileController {
      * @param fileName 文件名
      * @param totalSize 文件大小
      * @param startSize 文件开始索引位置
-     * @param bytes 字节流
+     * @param file 上传文件
      * @return 文件上传结果
      */
-    @PostMapping("/fileResumeUpload")
-    public ResponseResult upload(
+    @PostMapping("/upload")
+    public ResponseResult upload (
             @RequestParam("sha256") @NotBlank(message = "sha256不能为空") String sha256,
-            @RequestParam("fileName")@NotBlank(message = "文件名不能为空") String fileName,
-            @RequestParam("totalSize") Long totalSize,
+            @RequestParam("fileName") String fileName,
             @RequestParam("startSize") Long startSize,
-            @RequestParam("bytes") byte[] bytes){
-        return fileServer.upload(sha256,fileName,totalSize,startSize,bytes);
+            @RequestParam("totalSize") Long totalSize,
+            @RequestParam("file") MultipartFile file) throws IOException {
+        return fileServer.upload(sha256,fileName,totalSize,startSize,file);
     }
 }

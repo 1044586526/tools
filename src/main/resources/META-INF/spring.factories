@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration = \
-  cn.quant_cloud.upload.configuration.FileAutoConfiguration
+  cn.quant_cloud.upload.configuration.FileAutoConfiguration,\
+  cn.quant_cloud.upload.storage.disk.DiskFileStorageAutoConfiguration

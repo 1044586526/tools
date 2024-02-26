@@ -1,6 +1,8 @@
 package cn.quant_cloud.upload.storage.disk;
 
 import cn.quant_cloud.upload.storage.IFileStorage;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 
 /**
